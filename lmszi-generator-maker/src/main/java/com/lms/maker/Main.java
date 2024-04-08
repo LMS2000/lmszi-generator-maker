@@ -1,8 +1,7 @@
-package com.yupi.maker;
+package com.lms.maker;
 
-import com.yupi.maker.generator.main.GenerateTemplate;
-import com.yupi.maker.generator.main.MainGenerator;
-import com.yupi.maker.generator.main.ZipGenerator;
+import com.lms.maker.generator.main.GenerateTemplate;
+import com.lms.maker.generator.main.ZipGenerator;
 import freemarker.template.TemplateException;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.yupi.maker.generator;
+package com.lms.maker.generator;
 
 import java.io.*;
 import java.util.Map;
@@ -10,7 +10,10 @@ public class JarGenerator {
         // 注意不同操作系统，执行的命令不同
         String winMavenCommand = "mvn.cmd clean package -DskipTests=true";
         String otherMavenCommand = "mvn clean package -DskipTests=true";
-        String mavenCommand = otherMavenCommand;
+        String mavenCommand =
+                System.getProperty("os.name").toLowerCase().contains("windows") ? winMavenCommand
+                        : otherMavenCommand;
+
 
         // 这里一定要拆分！
         ProcessBuilder processBuilder = new ProcessBuilder(mavenCommand.split(" "));

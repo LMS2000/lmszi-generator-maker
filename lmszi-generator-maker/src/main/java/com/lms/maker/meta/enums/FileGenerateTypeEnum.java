@@ -1,4 +1,4 @@
-package com.yupi.maker.meta.enums;
+package com.lms.maker.meta.enums;
 
 /**
  * 文件生成类型枚举

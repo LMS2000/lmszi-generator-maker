@@ -1,6 +1,6 @@
-package com.yupi.maker.template.model;
+package com.lms.maker.template.model;
 
-import com.yupi.maker.meta.Meta;
+import com.lms.maker.meta.Meta;
 import lombok.Data;
 
 /**
@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class TemplateMakerConfig {
 
-    private Long id;
+    private String id;
 
     private Meta meta = new Meta();
 

@@ -1,4 +1,4 @@
-package com.yupi.maker.template.model;
+package com.lms.maker.template.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

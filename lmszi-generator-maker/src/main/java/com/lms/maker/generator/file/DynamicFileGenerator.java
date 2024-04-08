@@ -1,4 +1,4 @@
-package com.yupi.maker.generator.file;
+package com.lms.maker.generator.file;
 
 import cn.hutool.core.io.FileUtil;
 import freemarker.cache.ClassTemplateLoader;

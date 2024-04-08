@@ -1,4 +1,4 @@
-package com.yupi.maker.meta;
+package com.lms.maker.meta;
 
 public class MetaException extends RuntimeException {
 

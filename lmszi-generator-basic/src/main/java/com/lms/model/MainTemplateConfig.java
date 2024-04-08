@@ -1,4 +1,4 @@
-package com.yupi.model;
+package com.lms.model;
 
 import lombok.Data;
 

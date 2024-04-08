@@ -1,4 +1,4 @@
-package com.yupi.maker.template.enums;
+package com.lms.maker.template.enums;
 
 import cn.hutool.core.util.ObjectUtil;
 import lombok.Getter;

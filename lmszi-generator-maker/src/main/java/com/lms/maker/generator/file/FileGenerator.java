@@ -1,4 +1,4 @@
-package com.yupi.maker.generator.file;
+package com.lms.maker.generator.file;
 
 import freemarker.template.TemplateException;
 
@@ -28,7 +28,7 @@ public class FileGenerator {
         StaticFileGenerator.copyFilesByHutool(inputPath, outputPath);
         // 生成动态文件
         String inputDynamicFilePath = projectPath + File.separator + "src/main/resources/templates/DataModel.java.ftl.ftl";
-        String outputDynamicFilePath = outputPath + File.separator + "acm-template/src/com/yupi/acm/MainTemplate.java";
+        String outputDynamicFilePath = outputPath + File.separator + "acm-template/src/com.lms/acm/MainTemplate.java";
         DynamicFileGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
     }
 }

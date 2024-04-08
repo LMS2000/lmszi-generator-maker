@@ -1,7 +1,7 @@
-package com.yupi.maker.template;
+package com.lms.maker.template;
 
 import cn.hutool.core.util.StrUtil;
-import com.yupi.maker.meta.Meta;
+import com.lms.maker.meta.Meta;
 
 import java.util.List;
 import java.util.Set;

@@ -1,15 +1,14 @@
-package com.yupi.maker.generator.main;
+package com.lms.maker.generator.main;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
-import com.yupi.maker.generator.JarGenerator;
-import com.yupi.maker.generator.ScriptGenerator;
-import com.yupi.maker.generator.file.DynamicFileGenerator;
-import com.yupi.maker.generator.file.StaticFileGenerator;
-import com.yupi.maker.meta.Meta;
-import com.yupi.maker.meta.MetaManager;
+
+import com.lms.maker.generator.JarGenerator;
+import com.lms.maker.generator.ScriptGenerator;
+import com.lms.maker.generator.file.DynamicFileGenerator;
+import com.lms.maker.meta.Meta;
+import com.lms.maker.meta.MetaManager;
 import freemarker.template.TemplateException;
 
 import java.io.File;

@@ -1,10 +1,10 @@
-package com.yupi.maker.template;
+package com.lms.maker.template;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
-import com.yupi.maker.template.enums.FileFilterRangeEnum;
-import com.yupi.maker.template.enums.FileFilterRuleEnum;
-import com.yupi.maker.template.model.FileFilterConfig;
+import com.lms.maker.template.enums.FileFilterRangeEnum;
+import com.lms.maker.template.enums.FileFilterRuleEnum;
+import com.lms.maker.template.model.FileFilterConfig;
 
 import java.io.File;
 import java.util.List;

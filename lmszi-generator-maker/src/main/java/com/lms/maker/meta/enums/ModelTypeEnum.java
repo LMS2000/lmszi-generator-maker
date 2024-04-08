@@ -1,4 +1,4 @@
-package com.yupi.maker.meta.enums;
+package com.lms.maker.meta.enums;
 
 /**
  * 模型类型枚举

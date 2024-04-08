@@ -1,4 +1,4 @@
-package com.yupi.maker.meta;
+package com.lms.maker.meta;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;

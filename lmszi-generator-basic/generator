@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar target/lms-generator-maker-1.0-SNAPSHOT-jar-with-dependencies.jar "$@"
+java -jar target/lms-generator-basic-1.0-SNAPSHOT-jar-with-dependencies.jar "$@"

@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "fileConfig": {
+    "files": [
+      {
+        "path": "src/main/java/com.lms/springbootinit/model/dto/post/PostDTO.java",
+        "condition": "needPost && needEs"
+      }
+    ]
+  },
+  "modelConfig": {
+    "models": [
+
+      {
+        "fieldName": "needEs",
+        "type": "boolean",
+        "description":"是否开启Es",
+        "defaultValue": true
+      }
+    ]
+  }
+
+}

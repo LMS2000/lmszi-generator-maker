@@ -1,14 +1,13 @@
-package com.yupi.maker.meta;
+package com.lms.maker.meta;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.yupi.maker.meta.enums.FileGenerateTypeEnum;
-import com.yupi.maker.meta.enums.FileTypeEnum;
-import com.yupi.maker.meta.enums.ModelTypeEnum;
+import com.lms.maker.meta.enums.FileGenerateTypeEnum;
+import com.lms.maker.meta.enums.FileTypeEnum;
+import com.lms.maker.meta.enums.ModelTypeEnum;
 
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,23 +39,32 @@ public class MetaValidator {
             if (StrUtil.isNotEmpty(groupKey)) {
                 // 生成中间参数
                 List<Meta.ModelConfig.ModelInfo> subModelInfoList = modelInfo.getModels();
-                String allArgsStr = modelInfo.getModels().stream()
+                modelInfo.setDescription(groupKey);
+                // 校验分组下的模型有无信息
+                subModelInfoList.forEach(MetaValidator::validateAndSetDefaults);
+                String allArgsStr = subModelInfoList.stream()
                         .map(subModelInfo -> String.format("\"--%s\"", subModelInfo.getFieldName()))
                         .collect(Collectors.joining(", "));
                 modelInfo.setAllArgsStr(allArgsStr);
                 continue;
             }
+            validateAndSetDefaults(modelInfo);
+        }
+    }
+    private static void validateAndSetDefaults(Meta.ModelConfig.ModelInfo modelInfo) {
+        // 输出字段必填
+        if (StrUtil.isBlank(modelInfo.getFieldName())) {
+            throw new MetaException("fieldName is required");
+        }
 
-            // 输出路径默认值
-            String fieldName = modelInfo.getFieldName();
-            if (StrUtil.isBlank(fieldName)) {
-                throw new MetaException("未填写 fieldName");
-            }
-
-            String modelInfoType = modelInfo.getType();
-            if (StrUtil.isEmpty(modelInfoType)) {
-                modelInfo.setType(ModelTypeEnum.STRING.getValue());
-            }
+        String type = modelInfo.getType();
+        // 模型信息类型，默认为 String
+        if (StrUtil.isEmpty(type)) {
+            modelInfo.setType(ModelTypeEnum.STRING.getValue());
+        }
+        // 填充默认值
+        if(ModelTypeEnum.BOOLEAN.getValue().equals(type)){
+            modelInfo.setDefaultValue(Boolean.valueOf(modelInfo.getDefaultValue().toString()));
         }
     }
 
@@ -137,8 +145,8 @@ public class MetaValidator {
         // 校验并填充默认值
         String name = StrUtil.blankToDefault(meta.getName(), "my-generator");
         String description = StrUtil.emptyToDefault(meta.getDescription(), "我的模板代码生成器");
-        String author = StrUtil.emptyToDefault(meta.getAuthor(), "yupi");
-        String basePackage = StrUtil.blankToDefault(meta.getBasePackage(), "com.yupi");
+        String author = StrUtil.emptyToDefault(meta.getAuthor(), "lms");
+        String basePackage = StrUtil.blankToDefault(meta.getBasePackage(), "com.lms");
         String version = StrUtil.emptyToDefault(meta.getVersion(), "1.0");
         String createTime = StrUtil.emptyToDefault(meta.getCreateTime(), DateUtil.now());
         meta.setName(name);

@@ -1,19 +1,20 @@
-package com.yupi.maker.template;
+package com.lms.maker.template;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import com.yupi.maker.meta.Meta;
-import com.yupi.maker.meta.enums.FileGenerateTypeEnum;
-import com.yupi.maker.meta.enums.FileTypeEnum;
-import com.yupi.maker.template.model.TemplateMakerConfig;
-import com.yupi.maker.template.model.TemplateMakerFileConfig;
-import com.yupi.maker.template.model.TemplateMakerModelConfig;
-import com.yupi.maker.template.model.TemplateMakerOutputConfig;
+import com.lms.maker.meta.Meta;
+import com.lms.maker.meta.enums.FileGenerateTypeEnum;
+import com.lms.maker.meta.enums.FileTypeEnum;
+import com.lms.maker.template.model.TemplateMakerConfig;
+import com.lms.maker.template.model.TemplateMakerFileConfig;
+import com.lms.maker.template.model.TemplateMakerModelConfig;
+import com.lms.maker.template.model.TemplateMakerOutputConfig;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,20 +31,19 @@ public class TemplateMaker {
      * @param templateMakerConfig
      * @return
      */
-    public static long makeTemplate(TemplateMakerConfig templateMakerConfig) {
+    public static Meta makeTemplate(TemplateMakerConfig templateMakerConfig) {
         Meta meta = templateMakerConfig.getMeta();
         String originProjectPath = templateMakerConfig.getOriginProjectPath();
         TemplateMakerFileConfig templateMakerFileConfig = templateMakerConfig.getFileConfig();
         TemplateMakerModelConfig templateMakerModelConfig = templateMakerConfig.getModelConfig();
         TemplateMakerOutputConfig templateMakerOutputConfig = templateMakerConfig.getOutputConfig();
-        Long id = templateMakerConfig.getId();
-
+        String id = templateMakerConfig.getId();
         return makeTemplate(meta, originProjectPath, templateMakerFileConfig, templateMakerModelConfig, templateMakerOutputConfig, id);
     }
 
     /**
      * 制作模板
-     *
+     * 返回
      * @param newMeta
      * @param originProjectPath
      * @param templateMakerFileConfig
@@ -52,15 +52,15 @@ public class TemplateMaker {
      * @param id
      * @return
      */
-    public static long makeTemplate(Meta newMeta, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig, TemplateMakerModelConfig templateMakerModelConfig, TemplateMakerOutputConfig templateMakerOutputConfig, Long id) {
+    public static Meta makeTemplate(Meta newMeta, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig, TemplateMakerModelConfig templateMakerModelConfig, TemplateMakerOutputConfig templateMakerOutputConfig, String id) {
         // 没有 id 则生成
         if (id == null) {
-            id = IdUtil.getSnowflakeNextId();
+            id = IdUtil.getSnowflakeNextId() + RandomUtil.randomString(6);
         }
 
         // 复制目录
         String projectPath = System.getProperty("user.dir");
-        String tempDirPath = projectPath + File.separator + ".temp";
+        String tempDirPath = projectPath + File.separator + ".temp/model";
         String templatePath = tempDirPath + File.separator + id;
 
         // 是否为首次制作模板
@@ -129,10 +129,10 @@ public class TemplateMaker {
                 newMeta.getFileConfig().setFiles(TemplateMakerUtils.removeGroupFilesFromRoot(fileInfoList));
             }
         }
-
         // 3. 输出元信息文件
         FileUtil.writeUtf8String(JSONUtil.toJsonPrettyStr(newMeta), metaOutputPath);
-        return id;
+        // 3. 输出元信息文件
+        return newMeta;
     }
 
     /**

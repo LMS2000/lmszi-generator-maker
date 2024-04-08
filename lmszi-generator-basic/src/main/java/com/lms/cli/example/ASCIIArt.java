@@ -1,4 +1,4 @@
-package com.yupi.cli.example;
+package com.lms.cli.example;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
