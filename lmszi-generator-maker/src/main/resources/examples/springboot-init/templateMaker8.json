@@ -3,7 +3,7 @@
   "fileConfig": {
     "files": [
       {
-        "path": "src/main/java/com.lms/springbootinit/model/dto/post/PostDTO.java",
+        "path": "src/main/java/com/yupi/springbootinit/model/dto/post/PostDTO.java",
         "condition": "needPost && needEs"
       }
     ]

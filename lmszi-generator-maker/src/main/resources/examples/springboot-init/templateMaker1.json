@@ -14,7 +14,7 @@
         "type": "String",
         "description":"基础包名",
         "defaultValue": "com.lms",
-        "replaceText": "com.lms"
+        "replaceText": "com.yupi"
       }
     ]
   }
